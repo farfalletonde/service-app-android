@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/gradient.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/how_it_works_item_border.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/layout-v28/fragment_home_page.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1431159420289855" />
-        <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.1431159420289855" />
-        <entry key="app/src/main/res/layout/fragment_service_detail_page.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_service_detail_page.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_blog.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/list_item_popular.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/services_list_item.xml" value="0.14447463768115942" />
       </map>
     </option>
   </component>

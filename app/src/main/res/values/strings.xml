@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Case Study</string>
+
+    <!--Home Page-->
+    <string name="home_page_title">Hizmet piş \nağzıma düş</string>
+    <string name="search_bar_hint">Which service do you need?</string>
+
+    <string name="wedding_pic_discount">-15% \nİNDİRİM</string>
+    <string name="wedding_pic_title">First time newly weds</string>
+    <string name="wedding_pic_description">Wedding Photographers from 540 TL</string>
+
+    <string name="all_services">All services</string>
+
+    <string name="popular_these_days">Popular these days</string>
+
+    <string name="latest_from_the_blog">Latest from the blog</string>
+
+
+    <!--Detail Page-->
+    <string name="pros_near_you">pros near you</string>
+    <string name="average_rating">average rating</string>
+    <string name="free_of_charge">Free of charge</string>
+    <string name="service_guaranteed">Service guaranteed</string>
+    <string name="how_it_works">How it works</string>
+    <string name="how_it_works_1">1</string>
+    <string name="how_it_works_item_1">Answer the questions</string>
+    <string name="how_it_works_2">2</string>
+    <string name="how_it_works_item_2">Get Quotes</string>
+    <string name="how_it_works_3">3</string>
+    <string name="how_it_works_item_3">Compare the prices \nand decide</string>
+    <string name="button_text">Devam</string>
+
 </resources>
