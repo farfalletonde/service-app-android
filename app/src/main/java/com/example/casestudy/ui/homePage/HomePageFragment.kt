@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.casestudy.adapter.AllServicesAdapter
+import com.example.casestudy.adapter.BlogPostsAdapter
+import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentHomePageBinding
+import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +30,38 @@ class HomePageFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
 
+        viewModel.getData().observe(viewLifecycleOwner, { stateResource ->
+
+            when (stateResource) {
+                is StateResource.Loading -> {
+                    //progress bar
+                }
+                is StateResource.Success -> {
+
+                    val homePageData = stateResource.data
+
+                    binding.servicesRw.apply {
+                        adapter = AllServicesAdapter(homePageData.all_services)
+                        setHasFixedSize(true)
+                    }
+                    binding.popularServicesRw.apply {
+                        adapter = PopularServicesAdapter(requireContext(), homePageData.popular)
+                        setHasFixedSize(true)
+                    }
+                    binding.latestBlogRw.apply {
+                        adapter = BlogPostsAdapter(requireContext(), homePageData.posts)
+                        setHasFixedSize(true)
+                    }
+                }
+                is StateResource.Error -> {
+
+                }
+            }
+
+        })
+
+
         return binding.root
     }
+
 }

@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/fragment_service_detail_page.xml" value="0.335" />
         <entry key="app/src/main/res/layout/list_item_blog.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/list_item_popular.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/list_item_services.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/services_list_item.xml" value="0.14447463768115942" />
       </map>
     </option>
