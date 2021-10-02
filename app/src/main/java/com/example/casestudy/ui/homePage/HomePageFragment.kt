@@ -40,33 +40,49 @@ class HomePageFragment : Fragment(),
             when (stateResource) {
 
                 is StateResource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.homePageContainer.visibility = View.GONE
+                    binding.apply {
+                        progressBar.visibility = View.VISIBLE
+                        homePageContainer.visibility = View.GONE
+                        apiErrorMessage.visibility = View.GONE
+                    }
                 }
 
                 is StateResource.Success -> {
 
                     val homePageData = stateResource.data
 
-                    binding.servicesRw.apply {
-                        adapter = AllServicesAdapter(homePageData.all_services, this@HomePageFragment)
-                        setHasFixedSize(true)
-                    }
-                    binding.popularServicesRw.apply {
-                        adapter = PopularServicesAdapter(requireContext(), homePageData.popular, this@HomePageFragment)
-                        setHasFixedSize(true)
-                    }
-                    binding.latestBlogRw.apply {
-                        adapter = BlogPostsAdapter(requireContext(), homePageData.posts, this@HomePageFragment)
-                        setHasFixedSize(true)
+                    binding.apply {
+
+                        servicesRw.apply {
+                            adapter = AllServicesAdapter(homePageData.all_services, this@HomePageFragment)
+                            setHasFixedSize(true)
+                        }
+                        popularServicesRw.apply {
+                            adapter = PopularServicesAdapter(requireContext(), homePageData.popular, this@HomePageFragment)
+                            setHasFixedSize(true)
+                        }
+                        latestBlogRw.apply {
+                            adapter = BlogPostsAdapter(requireContext(), homePageData.posts, this@HomePageFragment)
+                            setHasFixedSize(true)
+                        }
+
+                        progressBar.visibility = View.GONE
+                        homePageContainer.visibility = View.VISIBLE
+                        apiErrorMessage.visibility = View.GONE
                     }
 
-                    binding.progressBar.visibility = View.GONE
-                    binding.homePageContainer.visibility = View.VISIBLE
                 }
 
                 is StateResource.Error -> {
-                    binding.homePageContainer.visibility = View.GONE
+                    binding.apply {
+                        progressBar.visibility = View.GONE
+                        homePageContainer.visibility = View.GONE
+                        apiErrorMessage.visibility = View.VISIBLE
+
+                        apiErrorMessage.setOnClickListener {
+                            apiErrorTryAgain()
+                        }
+                    }
                 }
             }
 
@@ -74,6 +90,10 @@ class HomePageFragment : Fragment(),
 
 
         return binding.root
+    }
+
+    private fun apiErrorTryAgain() {
+        requireActivity().recreate()
     }
 
     override fun onServiceClick(serviceId: Int) {

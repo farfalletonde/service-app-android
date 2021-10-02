@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.casestudy.R
@@ -41,8 +43,11 @@ class ServiceDetailPageFragment : Fragment() {
             when (stateResource) {
 
                 is StateResource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.detailPageContainer.visibility = View.GONE
+                    binding.apply {
+                        progressBar.visibility = View.VISIBLE
+                        detailPageContainer.visibility = View.GONE
+                        apiErrorMessage.visibility = View.GONE
+                    }
                 }
 
                 is StateResource.Success -> {
@@ -55,20 +60,34 @@ class ServiceDetailPageFragment : Fragment() {
                         numberOfProsTw.text = detailPageData.pro_count.toString()
                         serviceRatingTw.text = detailPageData.average_rating.toString()
                         completedJobTw.text = detailPageData.completed_jobs_on_last_month.toString()
+
+                        progressBar.visibility = View.GONE
+                        detailPageContainer.visibility = View.VISIBLE
+                        apiErrorMessage.visibility = View.GONE
                     }
 
-                    binding.progressBar.visibility = View.GONE
-                    binding.detailPageContainer.visibility = View.VISIBLE
 
                 }
 
                 is StateResource.Error -> {
-                    binding.detailPageContainer.visibility = View.GONE
+                    binding.apply {
+                        progressBar.visibility = View.GONE
+                        detailPageContainer.visibility = View.GONE
+                        apiErrorMessage.visibility = View.VISIBLE
+
+                        apiErrorMessage.setOnClickListener {
+                            apiErrorTryAgain()
+                        }
+                    }
                 }
             }
         })
 
         return binding.root
+    }
+
+    private fun apiErrorTryAgain() {
+        requireActivity().recreate()
     }
 
 }
