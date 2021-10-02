@@ -1,233 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        tools:context=".ui.homePage.HomePageFragment">
+        android:layout_gravity="center"/>
+
+    <ScrollView
+        android:id="@+id/homePageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/titleContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/homePageBgImage"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/titleContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/header_background"
-                android:adjustViewBounds="true"
+                android:background="@color/gray_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="contentDescription" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/homePageBgImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="contentDescription" />
+
+                <TextView
+                    android:id="@+id/homePageTitleTw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/home_page_title"
+                    android:textColor="@color/black"
+                    android:textSize="45sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/homePageBgImage"
+                    app:layout_constraintTop_toTopOf="@+id/homePageBgImage" />
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/homePageSearchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/rounded_corners"
+                    app:iconifiedByDefault="false"
+                    app:layout_constraintEnd_toEndOf="@+id/homePageBgImage"
+                    app:layout_constraintStart_toStartOf="@+id/homePageBgImage"
+                    app:layout_constraintTop_toBottomOf="@+id/homePageTitleTw"
+                    app:queryHint="@string/search_bar_hint"
+                    app:searchIcon="@drawable/ic_search_icon">
+
+                </androidx.appcompat.widget.SearchView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/discountContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleContainer">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/discountCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corners"
+                    app:cardCornerRadius="20dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/discountConstraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corners">
+
+                        <ImageView
+                            android:id="@+id/discountImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/wedding_image"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="contentDescription" />
+
+                        <TextView
+                            android:id="@+id/discountAmountTw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/rounded_corners"
+                            android:backgroundTint="@color/gray_background"
+                            android:fontFamily="@font/raleway_bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="10dp"
+                            android:text="@string/wedding_pic_discount"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toTopOf="@id/discountDescriptionContainer"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/discountDescriptionContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/green_background"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/discountImage"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/discountImageTitleTw"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_light"
+                                android:text="@string/wedding_pic_title"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/discountImageDescriptionTw"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_bold"
+                                android:text="@string/wedding_pic_description"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="19sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/homePageTitleTw"
+                android:id="@+id/allServicesTw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="50dp"
                 android:fontFamily="@font/raleway_bold"
-                android:text="@string/home_page_title"
+                android:text="@string/all_services"
                 android:textColor="@color/black"
-                android:textSize="45sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/homePageBgImage"
-                app:layout_constraintTop_toTopOf="@+id/homePageBgImage" />
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/discountContainer" />
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/homePageSearchBar"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/servicesRw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="25dp"
-                android:background="@drawable/rounded_corners"
-                app:searchIcon="@drawable/ic_search_icon"
-                app:queryHint="@string/search_bar_hint"
-                app:queryBackground="@android:color/transparent"
-                android:queryBackground="@android:color/transparent"
-                app:iconifiedByDefault="false"
-                app:layout_constraintTop_toBottomOf="@+id/homePageTitleTw"
-                app:layout_constraintEnd_toEndOf="@+id/homePageBgImage"
-                app:layout_constraintStart_toStartOf="@+id/homePageBgImage" >
+                android:layout_marginTop="20dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/allServicesTw"
+                app:spanCount="4" />
 
-            </androidx.appcompat.widget.SearchView>
+            <TextView
+                android:id="@+id/popularServicesTw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/popular_these_days"
+                android:textColor="@color/black"
+                android:textSize="27sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/servicesRw" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularServicesRw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popularServicesTw" />
+
+            <TextView
+                android:id="@+id/latestBlogTw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/latest_from_the_blog"
+                android:textColor="@color/black"
+                android:textSize="27sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popularServicesRw" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/latestBlogRw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/latestBlogTw" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <FrameLayout
-            android:id="@+id/discountContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginHorizontal="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleContainer">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/discountCardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:background="@drawable/rounded_corners">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/discountConstraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners">
-
-                    <ImageView
-                        android:id="@+id/discountImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/wedding_image"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="contentDescription"/>
-
-                    <TextView
-                        android:id="@+id/discountAmountTw"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="10dp"
-                        android:background="@drawable/rounded_corners"
-                        android:backgroundTint="@color/gray_background"
-                        android:fontFamily="@font/raleway_bold"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:text="@string/wedding_pic_discount"
-                        app:layout_constraintBottom_toTopOf="@id/discountDescriptionContainer"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:id="@+id/discountDescriptionContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@color/green_background"
-                        android:padding="20dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/discountImage"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
-
-                        <TextView
-                            android:id="@+id/discountImageTitleTw"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/raleway_light"
-                            android:text="@string/wedding_pic_title"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/discountImageDescriptionTw"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/raleway_bold"
-                            android:text="@string/wedding_pic_description"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="19sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/allServicesTw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/all_services"
-            android:fontFamily="@font/raleway_bold"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discountContainer"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/servicesRw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="25dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/allServicesTw"/>
-
-        <TextView
-            android:id="@+id/popularServicesTw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/popular_these_days"
-            android:fontFamily="@font/raleway_bold"
-            android:textColor="@color/black"
-            android:textSize="27sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/servicesRw"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popularServicesRw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="25dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popularServicesTw"/>
-
-        <TextView
-            android:id="@+id/latestBlogTw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/latest_from_the_blog"
-            android:fontFamily="@font/raleway_bold"
-            android:textColor="@color/black"
-            android:textSize="27sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/popularServicesRw"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/latestBlogRw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="25dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/latestBlogTw"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

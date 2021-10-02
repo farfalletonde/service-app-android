@@ -40,7 +40,8 @@ class HomePageFragment : Fragment(),
             when (stateResource) {
 
                 is StateResource.Loading -> {
-                    //progress bar
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.homePageContainer.visibility = View.GONE
                 }
 
                 is StateResource.Success -> {
@@ -59,10 +60,13 @@ class HomePageFragment : Fragment(),
                         adapter = BlogPostsAdapter(requireContext(), homePageData.posts, this@HomePageFragment)
                         setHasFixedSize(true)
                     }
+
+                    binding.progressBar.visibility = View.GONE
+                    binding.homePageContainer.visibility = View.VISIBLE
                 }
 
                 is StateResource.Error -> {
-
+                    binding.homePageContainer.visibility = View.GONE
                 }
             }
 

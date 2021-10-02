@@ -14,6 +14,7 @@ import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class ServiceDetailPageFragment : Fragment() {
@@ -40,7 +41,8 @@ class ServiceDetailPageFragment : Fragment() {
             when (stateResource) {
 
                 is StateResource.Loading -> {
-                    //progress bar
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.detailPageContainer.visibility = View.GONE
                 }
 
                 is StateResource.Success -> {
@@ -55,10 +57,13 @@ class ServiceDetailPageFragment : Fragment() {
                         completedJobTw.text = detailPageData.completed_jobs_on_last_month.toString()
                     }
 
+                    binding.progressBar.visibility = View.GONE
+                    binding.detailPageContainer.visibility = View.VISIBLE
+
                 }
 
                 is StateResource.Error -> {
-
+                    binding.detailPageContainer.visibility = View.GONE
                 }
             }
         })
