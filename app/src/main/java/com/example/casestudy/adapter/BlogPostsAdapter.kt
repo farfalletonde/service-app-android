@@ -13,10 +13,19 @@ import com.example.casestudy.model.homePageModel.Post
 
 class BlogPostsAdapter(
     private val context: Context,
-    private val dataset: List<Post>
+    private val dataset: List<Post>,
+    private val listener: OnItemClickListener
     ): RecyclerView.Adapter<BlogPostsAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
+        init {
+            view.setOnClickListener {
+                //when clicked, call the implemented function with its link as an argument
+                listener.onBlogPostClick(dataset[adapterPosition].link)
+            }
+        }
+
         val blogImage: ImageView = view.findViewById(R.id.blogItemImage)
         val blogCategory: TextView = view.findViewById(R.id.blogItemCategory)
         val blogTitle: TextView = view.findViewById(R.id.blogItemName)
@@ -40,4 +49,8 @@ class BlogPostsAdapter(
     }
 
     override fun getItemCount() = dataset.size
+
+    interface OnItemClickListener {
+        fun onBlogPostClick(blogLink: String)
+    }
 }

@@ -9,10 +9,19 @@ import com.example.casestudy.R
 import com.example.casestudy.model.homePageModel.Service
 
 class AllServicesAdapter(
-    private val dataset: List<Service>
+    private val dataset: List<Service>,
+    private val listener: OnItemClickListener
     ): RecyclerView.Adapter<AllServicesAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
+        init {
+            view.setOnClickListener {
+                //when clicked, call the implemented function with its service id as an argument
+                listener.onServiceClick(dataset[adapterPosition].service_id)
+            }
+        }
+
         val serviceName : TextView = view.findViewById(R.id.serviceListItem)
     }
 
@@ -50,4 +59,8 @@ class AllServicesAdapter(
     }
 
     override fun getItemCount() = dataset.size
+
+    interface OnItemClickListener {
+        fun onServiceClick(serviceId: Int)
+    }
 }

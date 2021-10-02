@@ -13,10 +13,19 @@ import com.example.casestudy.model.homePageModel.Service
 
 class PopularServicesAdapter(
     private val context: Context,
-    private val dataset: List<Service>
+    private val dataset: List<Service>,
+    private val listener: OnItemClickListener
     ): RecyclerView.Adapter<PopularServicesAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
+        init {
+            view.setOnClickListener {
+                //when clicked, call the implemented function with its service id as an argument
+                listener.onPopularServiceClick(dataset[adapterPosition].service_id)
+            }
+        }
+
         val serviceImage: ImageView = view.findViewById(R.id.popularServiceItemImage)
         val serviceName: TextView = view.findViewById(R.id.popularServiceItemName)
     }
@@ -39,4 +48,8 @@ class PopularServicesAdapter(
     }
 
     override fun getItemCount() = dataset.size
+
+    interface OnItemClickListener {
+        fun onPopularServiceClick(serviceId: Int)
+    }
 }
