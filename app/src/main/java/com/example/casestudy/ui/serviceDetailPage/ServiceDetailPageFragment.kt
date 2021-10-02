@@ -6,7 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.example.casestudy.R
+import com.example.casestudy.adapter.AllServicesAdapter
+import com.example.casestudy.adapter.BlogPostsAdapter
+import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
+import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +30,38 @@ class ServiceDetailPageFragment : Fragment() {
 
         _binding = FragmentServiceDetailPageBinding.inflate(inflater, container, false)
 
+        //get the service id that came with the safeargs bundle
+        val serviceId = ServiceDetailPageFragmentArgs
+            .fromBundle(requireArguments()).serviceId
+
         viewModel = ViewModelProvider(this).get(ServiceDetailPageViewModel::class.java)
+
+        viewModel.getData(serviceId).observe(viewLifecycleOwner, { stateResource ->
+            when (stateResource) {
+
+                is StateResource.Loading -> {
+                    //progress bar
+                }
+
+                is StateResource.Success -> {
+
+                    val detailPageData = stateResource.data
+
+                    binding.apply {
+                        Glide.with(requireContext()).load(detailPageData.image_url).into(serviceImage)
+                        serviceNameTw.text = detailPageData.long_name
+                        numberOfProsTw.text = detailPageData.pro_count.toString()
+                        serviceRatingTw.text = detailPageData.average_rating.toString()
+                        completedJobTw.text = detailPageData.completed_jobs_on_last_month.toString()
+                    }
+
+                }
+
+                is StateResource.Error -> {
+
+                }
+            }
+        })
 
         return binding.root
     }

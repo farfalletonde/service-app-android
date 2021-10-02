@@ -32,6 +32,7 @@ class BlogPostsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_blog, parent, false)
 
@@ -41,11 +42,13 @@ class BlogPostsAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val item = dataset[position]
+
         holder.apply {
             Glide.with(context).load(item.image_url).into(blogImage)
             blogCategory.text = item.category
             blogTitle.text = item.title
         }
+
     }
 
     override fun getItemCount() = dataset.size

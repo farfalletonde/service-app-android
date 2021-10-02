@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.casestudy.adapter.AllServicesAdapter
 import com.example.casestudy.adapter.BlogPostsAdapter
 import com.example.casestudy.adapter.PopularServicesAdapter
@@ -36,9 +37,11 @@ class HomePageFragment : Fragment(),
         viewModel.getData().observe(viewLifecycleOwner, { stateResource ->
 
             when (stateResource) {
+
                 is StateResource.Loading -> {
                     //progress bar
                 }
+
                 is StateResource.Success -> {
 
                     val homePageData = stateResource.data
@@ -56,6 +59,7 @@ class HomePageFragment : Fragment(),
                         setHasFixedSize(true)
                     }
                 }
+
                 is StateResource.Error -> {
 
                 }
@@ -68,11 +72,13 @@ class HomePageFragment : Fragment(),
     }
 
     override fun onServiceClick(serviceId: Int) {
-        TODO("Not yet implemented")
+        requireView().findNavController()
+            .navigate(HomePageFragmentDirections.actionHomePageFragmentToServiceDetailPageFragment(serviceId))
     }
 
     override fun onPopularServiceClick(serviceId: Int) {
-        TODO("Not yet implemented")
+        requireView().findNavController()
+            .navigate(HomePageFragmentDirections.actionHomePageFragmentToServiceDetailPageFragment(serviceId))
     }
 
     override fun onBlogPostClick(blogLink: String) {

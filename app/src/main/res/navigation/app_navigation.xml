@@ -18,5 +18,9 @@
         android:id="@+id/serviceDetailPageFragment"
         android:name="com.example.casestudy.ui.serviceDetailPage.ServiceDetailPageFragment"
         android:label="fragment_service_detail_page"
-        tools:layout="@layout/fragment_service_detail_page" />
+        tools:layout="@layout/fragment_service_detail_page" >
+        <argument
+            android:name="serviceId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

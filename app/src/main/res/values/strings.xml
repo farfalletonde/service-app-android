@@ -19,6 +19,8 @@
     <!--Detail Page-->
     <string name="pros_near_you">pros near you</string>
     <string name="average_rating">average rating</string>
+    <string name="last_month">Last month</string>
+    <string name="cleaning_jobs_completed">cleaning jobs completed</string>
     <string name="free_of_charge">Free of charge</string>
     <string name="service_guaranteed">Service guaranteed</string>
     <string name="how_it_works">How it works</string>

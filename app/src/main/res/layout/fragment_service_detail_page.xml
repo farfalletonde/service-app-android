@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/deneme"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +44,6 @@
                 android:fontFamily="@font/raleway_medium"
                 android:textStyle="bold"
                 android:textSize="27sp"
-                android:text="Ev Temizliği"
                 app:layout_constraintStart_toStartOf="@id/serviceImage"
                 app:layout_constraintBottom_toBottomOf="@id/serviceImage"/>
 
@@ -91,7 +89,7 @@
                 app:drawableLeftCompat="@drawable/ic_icn_star_average"
                 android:drawablePadding="10dp"
                 android:textColor="@color/green_background"
-                android:fontFamily="@font/raleway_medium"
+                android:fontFamily="@font/raleway_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/numberOfProsTw" />
 
@@ -108,14 +106,37 @@
                 app:layout_constraintTop_toBottomOf="@id/numberOfProsTw" />
 
             <TextView
-                android:id="@+id/completedJobTw"
+                android:id="@+id/completedJobLastMonthTw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 app:drawableLeftCompat="@drawable/ic_icn_job_done_orange"
                 android:drawablePadding="10dp"
+                android:textColor="@color/black"
+                android:text="@string/last_month"
                 android:fontFamily="@font/raleway_medium"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/serviceRatingTw" />
+            <TextView
+                android:id="@+id/completedJobTw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/raleway_medium"
+                app:layout_constraintStart_toEndOf="@id/completedJobLastMonthTw"
+                app:layout_constraintTop_toBottomOf="@id/serviceRatingTw" />
+            <TextView
+                android:id="@+id/completedJobJobsCompletedTw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:text="@string/cleaning_jobs_completed"
+                android:fontFamily="@font/raleway_medium"
+                app:layout_constraintStart_toEndOf="@id/completedJobTw"
                 app:layout_constraintTop_toBottomOf="@id/serviceRatingTw" />
 
             <TextView
@@ -285,6 +306,8 @@
             android:layout_marginTop="50dp"
             android:layout_marginHorizontal="30dp"
             android:paddingVertical="12dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
             android:text="@string/button_text"
             android:fontFamily="@font/raleway_bold"
             app:layout_constraintStart_toStartOf="parent"
