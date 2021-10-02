@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_serviceDetailPageFragment"
             app:destination="@id/serviceDetailPageFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_blogPostPageFragment"
+            app:destination="@id/blogPostPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceDetailPageFragment"
@@ -22,5 +25,14 @@
         <argument
             android:name="serviceId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/blogPostPageFragment"
+        android:name="com.example.casestudy.ui.BlogPostPageFragment"
+        android:label="fragment_blog_post_page"
+        tools:layout="@layout/fragment_blog_post_page" >
+        <argument
+            android:name="blogPostUrl"
+            app:argType="string" />
     </fragment>
 </navigation>

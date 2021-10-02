@@ -31,5 +31,7 @@
     <string name="how_it_works_3">3</string>
     <string name="how_it_works_item_3">Compare the prices \nand decide</string>
     <string name="button_text">Devam</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
