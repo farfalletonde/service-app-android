@@ -9,7 +9,8 @@
     <string name="home_page_title">Hizmet piş \nağzıma düş</string>
     <string name="search_bar_hint">Which service do you need?</string>
 
-    <string name="wedding_pic_discount">-15% \nİNDİRİM</string>
+    <string name="wedding_pic_discount_amount">-15%</string>
+    <string name="wedding_pic_discount">İNDİRİM</string>
     <string name="wedding_pic_title">First time newly weds</string>
     <string name="wedding_pic_description">Wedding Photographers from 540 TL</string>
 

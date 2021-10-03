@@ -83,8 +83,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/homePageTitleTw"
                     app:queryHint="@string/search_bar_hint"
                     app:searchIcon="@drawable/ic_search_icon">
-
                 </androidx.appcompat.widget.SearchView>
+
+                <View
+                    android:id="@+id/search_bar_shadow"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/gradient_top_to_bottom"
+                    app:layout_constraintEnd_toEndOf="@+id/homePageSearchBar"
+                    app:layout_constraintStart_toStartOf="@+id/homePageSearchBar"
+                    app:layout_constraintTop_toBottomOf="@+id/homePageSearchBar"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -123,23 +132,40 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="contentDescription" />
 
-                        <TextView
-                            android:id="@+id/discountAmountTw"
+                        <LinearLayout
+                            android:id="@+id/discountAmountContainer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:orientation="vertical"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:backgroundTint="@color/gray_background"
-                            android:fontFamily="@font/raleway_bold"
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="10dp"
-                            android:text="@string/wedding_pic_discount"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:background="@drawable/rounded_corners"
+                            android:backgroundTint="@color/gray_background"
                             app:layout_constraintBottom_toTopOf="@id/discountDescriptionContainer"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/discountAmountTw"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_bold"
+                                android:text="@string/wedding_pic_discount_amount"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="30sp" />
+                            <TextView
+                                android:id="@+id/discountTw"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_medium"
+                                android:text="@string/wedding_pic_discount"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/discountDescriptionContainer"
@@ -147,7 +173,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/green_background"
                             android:orientation="vertical"
-                            android:padding="10dp"
+                            android:padding="8dp"
                             app:layout_constraintBottom_toBottomOf="@+id/discountImage"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent">
@@ -166,12 +192,12 @@
                                 android:id="@+id/discountImageDescriptionTw"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/raleway_bold"
+                                android:paddingBottom="6dp"
+                                android:fontFamily="@font/raleway_medium"
                                 android:text="@string/wedding_pic_description"
                                 android:textAllCaps="true"
                                 android:textColor="@color/white"
-                                android:textSize="19sp"
-                                android:textStyle="bold" />
+                                android:textSize="18sp"/>
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

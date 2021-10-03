@@ -32,7 +32,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/serviceImageContainer"
@@ -57,7 +58,7 @@
                     android:id="@+id/imageShadow"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/gradient"
+                    android:background="@drawable/gradient_bottom_to_top"
                     app:layout_constraintBottom_toBottomOf="@id/serviceImage"
                     app:layout_constraintStart_toStartOf="@id/serviceImage" />
 

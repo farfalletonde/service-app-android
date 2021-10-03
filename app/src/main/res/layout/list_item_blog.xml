@@ -19,7 +19,7 @@
         android:id="@+id/imageShadow"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@drawable/gradient"
+        android:background="@drawable/gradient_bottom_to_top"
         app:layout_constraintStart_toStartOf="@id/blogItemImage"
         app:layout_constraintBottom_toBottomOf="@id/blogItemImage"
         app:layout_constraintEnd_toEndOf="@id/blogItemImage" />
