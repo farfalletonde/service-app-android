@@ -5,18 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.casestudy.R
-import com.example.casestudy.adapter.AllServicesAdapter
-import com.example.casestudy.adapter.BlogPostsAdapter
-import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class ServiceDetailPageFragment : Fragment() {

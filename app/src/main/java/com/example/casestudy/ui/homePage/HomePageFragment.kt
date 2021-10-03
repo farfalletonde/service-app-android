@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.casestudy.adapter.AllServicesAdapter
