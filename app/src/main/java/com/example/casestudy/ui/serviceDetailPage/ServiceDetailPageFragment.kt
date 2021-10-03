@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.casestudy.R
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +50,9 @@ class ServiceDetailPageFragment : Fragment() {
                     val detailPageData = stateResource.data
 
                     binding.apply {
-                        Glide.with(requireContext()).load(detailPageData.image_url).into(serviceImage)
+                        Glide.with(requireContext()).load(detailPageData.image_url)
+                            .thumbnail(0.1f)
+                            .into(serviceImage)
                         serviceNameTw.text = detailPageData.long_name
                         numberOfProsTw.text = detailPageData.pro_count.toString()
                         serviceRatingTw.text = detailPageData.average_rating.toString()

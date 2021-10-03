@@ -44,7 +44,9 @@ class BlogPostsAdapter(
         val item = dataset[position]
 
         holder.apply {
-            Glide.with(context).load(item.image_url).into(blogImage)
+            Glide.with(context).load(item.image_url)
+                .thumbnail(0.1f)
+                .into(blogImage)
             blogCategory.text = item.category
             blogTitle.text = item.title
         }
