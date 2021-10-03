@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Case Study</string>
 
-    <string name="api_error">Try again? ↻</string>
+    <string name="api_error">No connection. Try again? c</string>
+    <string name="not_found">There is no available data for this service</string>
+    <string name="unknown_error">Unknown error. Try again? ↻</string>
 
     <!--Home Page-->
     <string name="home_page_title">Hizmet piş \nağzıma düş</string>

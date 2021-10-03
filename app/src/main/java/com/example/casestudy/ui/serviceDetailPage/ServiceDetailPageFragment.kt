@@ -1,6 +1,7 @@
 package com.example.casestudy.ui.serviceDetailPage
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,9 @@ import com.example.casestudy.R
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.HttpException
+import java.io.IOException
+import java.net.UnknownHostException
 
 @AndroidEntryPoint
 class ServiceDetailPageFragment : Fragment() {
@@ -67,15 +71,37 @@ class ServiceDetailPageFragment : Fragment() {
                 }
 
                 is StateResource.Error -> {
+
                     binding.apply {
                         progressBar.visibility = View.GONE
                         detailPageContainer.visibility = View.GONE
                         apiErrorMessage.visibility = View.VISIBLE
-
-                        apiErrorMessage.setOnClickListener {
-                            apiErrorTryAgain()
-                        }
                     }
+
+                    //Error handling
+                    when(stateResource.e) {
+
+                        //If data is not available
+                        is HttpException -> binding.apiErrorMessage.text = resources.getText(R.string.not_found)
+
+                        //If there is no internet
+                        is UnknownHostException -> {
+                            binding.apiErrorMessage.setOnClickListener {
+                                apiErrorTryAgain()
+                            }
+                        }
+
+                        else -> {
+                            binding.apiErrorMessage.apply {
+                                text = resources.getText(R.string.unknown_error)
+                                setOnClickListener {
+                                    apiErrorTryAgain()
+                                }
+                            }
+                        }
+
+                    }
+
                 }
             }
         })
