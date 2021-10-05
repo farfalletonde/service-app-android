@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.example.casestudy.adapter.AllServicesAdapter
 import com.example.casestudy.adapter.BlogPostsAdapter
@@ -13,6 +14,7 @@ import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentHomePageBinding
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class HomePageFragment : Fragment(),
@@ -34,58 +36,63 @@ class HomePageFragment : Fragment(),
 
         viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
 
-        viewModel.getData().observe(viewLifecycleOwner, { stateResource ->
+        lifecycleScope.launchWhenStarted {
 
-            when (stateResource) {
+            viewModel.getData().collect {
 
-                is StateResource.Loading -> {
-                    binding.apply {
-                        progressBar.visibility = View.VISIBLE
-                        homePageContainer.visibility = View.GONE
-                        apiErrorMessage.visibility = View.GONE
+
+                when (it) {
+
+                    is StateResource.Loading -> {
+                        binding.apply {
+                            progressBar.visibility = View.VISIBLE
+                            homePageContainer.visibility = View.GONE
+                            apiErrorMessage.visibility = View.GONE
+                        }
+                    }
+
+                    is StateResource.Success -> {
+
+                        val homePageData = it.data
+
+                        binding.apply {
+
+                            servicesRw.apply {
+                                adapter = AllServicesAdapter(homePageData.all_services, this@HomePageFragment)
+                                setHasFixedSize(true)
+                            }
+                            popularServicesRw.apply {
+                                adapter = PopularServicesAdapter(requireContext(), homePageData.popular, this@HomePageFragment)
+                                setHasFixedSize(true)
+                            }
+                            latestBlogRw.apply {
+                                adapter = BlogPostsAdapter(requireContext(), homePageData.posts, this@HomePageFragment)
+                                setHasFixedSize(true)
+                            }
+
+                            progressBar.visibility = View.GONE
+                            homePageContainer.visibility = View.VISIBLE
+                            apiErrorMessage.visibility = View.GONE
+                        }
+
+                    }
+
+                    is StateResource.Error -> {
+                        binding.apply {
+                            progressBar.visibility = View.GONE
+                            homePageContainer.visibility = View.GONE
+                            apiErrorMessage.visibility = View.VISIBLE
+
+                            apiErrorMessage.setOnClickListener {
+                                apiErrorTryAgain()
+                            }
+                        }
                     }
                 }
 
-                is StateResource.Success -> {
-
-                    val homePageData = stateResource.data
-
-                    binding.apply {
-
-                        servicesRw.apply {
-                            adapter = AllServicesAdapter(homePageData.all_services, this@HomePageFragment)
-                            setHasFixedSize(true)
-                        }
-                        popularServicesRw.apply {
-                            adapter = PopularServicesAdapter(requireContext(), homePageData.popular, this@HomePageFragment)
-                            setHasFixedSize(true)
-                        }
-                        latestBlogRw.apply {
-                            adapter = BlogPostsAdapter(requireContext(), homePageData.posts, this@HomePageFragment)
-                            setHasFixedSize(true)
-                        }
-
-                        progressBar.visibility = View.GONE
-                        homePageContainer.visibility = View.VISIBLE
-                        apiErrorMessage.visibility = View.GONE
-                    }
-
-                }
-
-                is StateResource.Error -> {
-                    binding.apply {
-                        progressBar.visibility = View.GONE
-                        homePageContainer.visibility = View.GONE
-                        apiErrorMessage.visibility = View.VISIBLE
-
-                        apiErrorMessage.setOnClickListener {
-                            apiErrorTryAgain()
-                        }
-                    }
-                }
             }
+        }
 
-        })
 
 
         return binding.root

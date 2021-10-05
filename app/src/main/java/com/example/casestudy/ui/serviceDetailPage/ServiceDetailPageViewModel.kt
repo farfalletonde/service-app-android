@@ -1,13 +1,13 @@
 package com.example.casestudy.ui.serviceDetailPage
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.casestudy.model.detailPageModel.ServiceDetailModel
 import com.example.casestudy.repository.AppRepository
 import com.example.casestudy.util.StateResource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,19 +16,21 @@ class ServiceDetailPageViewModel
 @Inject
 constructor(private val repository: AppRepository): ViewModel() {
 
-    private val _detailPageData = MutableLiveData<StateResource<ServiceDetailModel>>()
-    private val detailPageData : LiveData<StateResource<ServiceDetailModel>>
+    private val _detailPageData = MutableStateFlow<StateResource<ServiceDetailModel>>(StateResource.Loading())
+    private val detailPageData : StateFlow<StateResource<ServiceDetailModel>>
         get() = _detailPageData
 
-    fun getData(serviceId: Int): LiveData<StateResource<ServiceDetailModel>> {
+    fun getData(serviceId: Int): StateFlow<StateResource<ServiceDetailModel>> {
+
+        _detailPageData.value = StateResource.Loading()
+
         viewModelScope.launch {
-            _detailPageData.postValue(StateResource.Loading())
             try {
                 val response = repository.getServiceDetail(serviceId)
-                _detailPageData.postValue(StateResource.Success(response))
+                _detailPageData.value = StateResource.Success(response)
             }
             catch (e: Exception) {
-                _detailPageData.postValue(StateResource.Error(e))
+                _detailPageData.value = StateResource.Error(e)
             }
         }
         return detailPageData
