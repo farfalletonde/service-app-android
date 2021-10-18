@@ -11,18 +11,17 @@ import com.bumptech.glide.Glide
 import com.example.casestudy.R
 import com.example.casestudy.databinding.FragmentServiceDetailPageBinding
 import com.example.casestudy.util.StateResource
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
 import java.net.UnknownHostException
 
-@AndroidEntryPoint
 class ServiceDetailPageFragment : Fragment() {
 
     private var _binding: FragmentServiceDetailPageBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: ServiceDetailPageViewModel
+    private val viewModel by viewModel<ServiceDetailPageViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +33,6 @@ class ServiceDetailPageFragment : Fragment() {
         //get the service id that came with the safeargs bundle
         val serviceId = ServiceDetailPageFragmentArgs
             .fromBundle(requireArguments()).serviceId
-
-        viewModel = ViewModelProvider(this).get(ServiceDetailPageViewModel::class.java)
 
         lifecycleScope.launchWhenStarted {
 

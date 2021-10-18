@@ -13,10 +13,9 @@ import com.example.casestudy.adapter.BlogPostsAdapter
 import com.example.casestudy.adapter.PopularServicesAdapter
 import com.example.casestudy.databinding.FragmentHomePageBinding
 import com.example.casestudy.util.StateResource
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class HomePageFragment : Fragment(),
     AllServicesAdapter.OnItemClickListener,
     PopularServicesAdapter.OnItemClickListener,
@@ -25,7 +24,7 @@ class HomePageFragment : Fragment(),
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomePageViewModel
+    private val viewModel by viewModel<HomePageViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +33,9 @@ class HomePageFragment : Fragment(),
 
         _binding = FragmentHomePageBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
-
         lifecycleScope.launchWhenStarted {
 
             viewModel.getData().collect {
-
 
                 when (it) {
 
